@@ -1,21 +1,21 @@
 #include <stdio.h>
 void pageReplacementFIFO(int pages[],int n,int f){
     int frames[f];
-    int isPageFault;
+    int isPageFound;
     int pageFaultCount=0;
     int front=0;
     for(int i=0;i<f;i++){
         frames[i]=-1;
     }
     for(int i=0;i<n;i++){
-        isPageFault=0;
+        isPageFound=0;
         for(int j=0;j<f;j++){
             if(frames[j]==pages[i]){
-                isPageFault=1;
+                isPageFound=1;
                 break;
             }
         }
-        if(!isPageFault){
+        if(!isPageFound){
             frames[front]=pages[i];
             front=(front+1)%f;
             pageFaultCount++;
