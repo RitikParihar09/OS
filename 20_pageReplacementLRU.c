@@ -12,7 +12,7 @@ int findLRU(int times[],int f){
 
 void pageReplacementLRU(int pages[],int n,int f){
     int frames[f];
-    int isPageFault;
+    int isPageFound;
     int pageFaultCount=0;
     int counter=0;
     int times[f];
@@ -21,16 +21,16 @@ void pageReplacementLRU(int pages[],int n,int f){
     }
     
     for(int i=0;i<n;i++){
-        isPageFault=0;
+        isPageFound=0;
         for(int j=0;j<f;j++){
             if(frames[j]==pages[i]){
-                isPageFault=1;
+                isPageFound=1;
                 times[j]=++counter;
                 break;
             }
         }
         
-        if(!isPageFault){
+        if(!isPageFound){
             if(i<f){
                 times[i]=++counter;
                 frames[i]=pages[i];
